@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hackbulgaria.widgets.videowidget.MainActivity" >
+
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
+    
+	<LinearLayout
+	    android:orientation="horizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    tools:context="com.hackbulgaria.widgets.videowidget.MainActivity"
+	    android:weightSum="3" >
+	    
+	    <ImageButton
+	        android:id="@+id/seek_left"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/prev"
+	        android:layout_weight="1" />
+	
+	    <ImageButton
+	        android:id="@+id/play_pause"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/play"
+	        android:layout_weight="1"/>
+	    
+	    <ImageButton
+	        android:id="@+id/seek_right"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/next"
+	        android:layout_weight="1" />
+	    
+	</LinearLayout>
+
+</LinearLayout>

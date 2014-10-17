@@ -17,16 +17,17 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	List<Drawable> images;
-	List<Drawable> imagesShuffled;
+	private List<Drawable> images;
+	private List<Drawable> imagesShuffled;
+	private List<ImageView> views;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main);
-		TypedArray ta = getResources().obtainTypedArray(R.array.images);
-		getImages(ta);
+		views = new ArrayList<ImageView>();
+		getImages();
 		shuffleImages();
 		for (int i = 0; i < Math.sqrt(images.size()); i++) {
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -39,7 +40,8 @@ public class MainActivity extends Activity {
 				final ImageView iv = new ImageView(this);
 				iv.setAdjustViewBounds(true);
 				iv.setScaleType(ImageView.ScaleType.FIT_XY);
-				iv.setImageDrawable(images.get((int) (i
+				views.add(iv);
+				iv.setImageDrawable(imagesShuffled.get((int) (i
 						* Math.sqrt(images.size()) + j)));
 				iv.setLayoutParams(new LinearLayout.LayoutParams(100, 80));
 				iv.setOnTouchListener(new View.OnTouchListener() {
@@ -75,11 +77,12 @@ public class MainActivity extends Activity {
 	}
 
 	private void shuffleImages() {
-		imagesShuffled = images;
+		imagesShuffled = new ArrayList<Drawable>(images);
 		Collections.shuffle(imagesShuffled);
 	}
 
-	private void getImages(TypedArray ta) {
+	private void getImages() {
+		TypedArray ta = getResources().obtainTypedArray(R.array.images);
 		images = new ArrayList<Drawable>();
 		for (int i = 0; i < ta.length(); i++) {
 			images.add(ta.getDrawable(i));
@@ -88,10 +91,18 @@ public class MainActivity extends Activity {
 	}
 
 	private boolean won() {
-		return imagesShuffled.equals(images);
+		return images.equals(getDrawablesFromViews());
 	}
 
 	private void toast(String s) {
 		Toast.makeText(this, s, Toast.LENGTH_LONG).show();
+	}
+
+	private List<Drawable> getDrawablesFromViews() {
+		List<Drawable> drawables = new ArrayList<Drawable>();
+		for (ImageView view : views) {
+			drawables.add(view.getDrawable());
+		}
+		return drawables;
 	}
 }

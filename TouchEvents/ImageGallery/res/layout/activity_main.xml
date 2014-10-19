@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hackbulgaria.touchevents.example.imagegallery.MainActivity"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:background="@drawable/trent_broser"
+        android:layout_width="300dp"
+        android:layout_height="200dp" />
+    
+    <TextView 
+        android:id="@+id/progress"
+        android:text="1/4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

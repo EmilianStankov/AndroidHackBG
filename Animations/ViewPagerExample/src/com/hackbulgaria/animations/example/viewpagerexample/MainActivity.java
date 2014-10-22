@@ -57,9 +57,6 @@ public class MainActivity extends FragmentActivity {
 
 		@Override
 		public void transformPage(View view, float position) {
-			int pageWidth = view.getWidth();
-			int pageHeight = view.getHeight();
-
 			if (position < -1) {
 				view.setAlpha(0);
 			} else if (position <= 1) {
